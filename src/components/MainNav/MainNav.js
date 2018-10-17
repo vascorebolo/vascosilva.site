@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import './MainNav.css'
 
-const MainNav = ({ routes }) => {
+const MainNav = ({ title, routes }) => {
   function renderLinks() {
     return routes.map((item, index) => {
       return <Link to={item.path} key={`${index}-link`}>{ item.label }</Link>
@@ -10,13 +11,17 @@ const MainNav = ({ routes }) => {
   }
 
   return (
-    <nav>
-      { renderLinks() }
-    </nav>
+    <div className="MainNavContainer">
+      <div class="MainNavTitle">{ title }</div>
+      <nav className="MainNav">
+        { renderLinks() }
+      </nav>
+    </div>
   )
 }
 
 MainNav.propTypes = {
+  title: PropTypes.string,
   routes: PropTypes.array
 }
 

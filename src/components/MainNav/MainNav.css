@@ -1,0 +1,26 @@
+.MainNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.MainNav a {
+  margin-right: 20px;
+  display: block;
+  line-height: 60px;
+  color: #fff;
+  text-decoration: underline;
+}
+
+.MainNavContainer {
+  align-items: center;
+  background: #444;
+  display: flex;
+}
+
+.MainNavTitle {
+  color: #fff;
+  font-size: 20px;
+  padding: 20px;
+  margin-right: 40px;
+}

@@ -9,9 +9,8 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1>Vasco Silva</h1>
           <nav>
-            <MainNav routes={routes} />
+            <MainNav routes={routes} title={'Vasco Silva'} />
           </nav>
           <RenderZone routes={routes} />
         </header>
