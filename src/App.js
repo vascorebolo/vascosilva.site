@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Route, Link, Switch } from 'react-router-dom'
-import About from './components/About/About'
-import Home from './components/Home/Home'
-import Test from './components/Test/Test'
+import About from './components/About'
+import Home from './components/Home'
+import Test from './components/Test'
 import './App.css'
 
 class App extends Component {
