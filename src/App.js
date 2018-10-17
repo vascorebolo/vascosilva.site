@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Route, Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
+import MainNav from './components/MainNav'
 import routes from './menuconfig'
 import './App.css'
 
@@ -18,20 +19,13 @@ class App extends Component {
       })
   }
 
-  // Will eventually put this in proper component for nav
-  renderLinks() {
-    return routes.map((item, index) => {
-      return <Link to={item.path} key={`${index}-link`}>{ item.label }</Link>
-    })
-  }
-
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <h1>Vasco Silva</h1>
           <nav>
-            { this.renderLinks() }
+            <MainNav routes={routes} />
           </nav>
           <div>
               { this.renderRoutes() }
