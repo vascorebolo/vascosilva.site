@@ -4,15 +4,24 @@ import { Link } from 'react-router-dom'
 import './MainNav.css'
 
 const MainNav = ({ title, routes }) => {
+  function renderLink(item, index) {
+    if (item.showLink)
+      return <Link to={item.path} key={`${index}-link`}>{ item.label }</Link>
+  }
+
   function renderLinks() {
     return routes.map((item, index) => {
-      return <Link to={item.path} key={`${index}-link`}>{ item.label }</Link>
+      return renderLink(item, index)
     })
   }
 
   return (
     <div className="MainNavContainer">
-      <div className="MainNavTitle">{ title }</div>
+      <div className="MainNavTitle">
+        <Link to={'/'}>
+          { title }
+        </Link>
+      </div>
       <nav className="MainNav">
         { renderLinks() }
       </nav>

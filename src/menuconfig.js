@@ -1,21 +1,24 @@
 const routes = [
   {
-    "label": "Home",
-    "path": "/",
-    "exact": true,
-    "component": "Home"
+    label: "Home",
+    path: "/",
+    exact: true,
+    component: "Home",
+    showLink: false,
   },
   {
-    "label": "About",
-    "path": "/about",
-    "exact": false,
-    "component": "About"
+    label: "About",
+    path: "/about",
+    exact: false,
+    component: "About",
+    showLink: true,
   },
   {
-    "label": "Test",
-    "path": "/test",
-    "exact": false,
-    "component": "Test"
+    label: "Gallery",
+    path: "/gallery",
+    exact: false,
+    component: "Test",
+    showLink: true,
   }
 ]
 

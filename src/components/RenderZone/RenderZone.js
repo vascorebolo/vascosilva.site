@@ -16,11 +16,7 @@ const RenderZone = ({ routes }) => {
     })
   }
 
-  return (
-    <div>
-      { renderRoutes() }
-    </div>
-  )
+  return renderRoutes()
 }
 
 RenderZone.propTypes = {

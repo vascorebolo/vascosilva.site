@@ -2,25 +2,52 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 8px 0;
 }
 
 .MainNav a {
-  margin-right: 20px;
+  border: 1px solid #444;
+  color: #444;
+  cursor: pointer;
   display: block;
-  line-height: 60px;
+  font-size: 14px;
+  line-height: 20px;
+  margin-right: 10px;
+  padding: 0 10px;
+  text-decoration: none;
+  transition: background .1s ease-in;
+}
+
+.MainNav a:hover {
+  background: #444;
   color: #fff;
-  text-decoration: underline;
 }
 
 .MainNavContainer {
   align-items: center;
-  background: #444;
   display: flex;
 }
 
 .MainNavTitle {
+  align-items: center;
+  border: 1px solid #444;
+  margin-right: 15px;
+  transition: background .1s ease-in;
+}
+
+.MainNavTitle:hover {
+  background: tomato;
+}
+
+.MainNavTitle a {
+  color: #444;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  padding: 0 20px;
+  text-decoration: none;
+}
+
+.MainNavTitle a:hover {
   color: #fff;
-  font-size: 20px;
-  padding: 20px;
-  margin-right: 40px;
 }

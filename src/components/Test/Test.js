@@ -3,7 +3,9 @@ import React from 'react'
 const Test = () => {
   return (
     <div>
-      <p>test component</p>
+      <p>
+        This is still in development...<br/>
+      </p>
     </div>
   )
 }

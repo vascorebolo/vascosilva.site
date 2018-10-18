@@ -12,8 +12,10 @@ class App extends Component {
           <nav>
             <MainNav routes={routes} title={'Vasco Silva'} />
           </nav>
-          <RenderZone routes={routes} />
         </header>
+        <div className="MainContainer">
+          <RenderZone routes={routes} />
+        </div>
       </div>
     );
   }
