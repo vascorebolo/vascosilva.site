@@ -12,7 +12,7 @@ const MainNav = ({ title, routes }) => {
 
   return (
     <div className="MainNavContainer">
-      <div class="MainNavTitle">{ title }</div>
+      <div className="MainNavTitle">{ title }</div>
       <nav className="MainNav">
         { renderLinks() }
       </nav>
