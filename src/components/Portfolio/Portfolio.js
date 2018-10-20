@@ -10,7 +10,7 @@ class Portfolio extends Component {
   }
 
   componentWillMount() {
-    fetch('http://vascosilva.site/cms/api/collections/get/gallery?token=6b51bd66a3c69d41bdb2ac0f63de66')
+    fetch('https://vascosilva.site/cms/api/collections/get/gallery?token=6b51bd66a3c69d41bdb2ac0f63de66')
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({ galleries: responseJson.entries, isLoadingNames: false })
