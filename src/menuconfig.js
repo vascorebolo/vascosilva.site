@@ -14,10 +14,10 @@ const routes = [
     showLink: true,
   },
   {
-    label: "Gallery",
-    path: "/gallery",
+    label: "Portfolio",
+    path: "/portfolio",
     exact: false,
-    component: "Test",
+    component: "Portfolio",
     showLink: true,
   }
 ]
