@@ -5,7 +5,7 @@ import './Home.css'
 const Home = () => {
   return (
     <div className="Home">
-      <p>in development...</p>
+      <img src={mainimg} alt="home_page_photo" />
     </div>
   )
 }

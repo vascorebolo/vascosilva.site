@@ -1,8 +1,9 @@
 import React from 'react'
+import './About.css'
 
 const About = () => {
   return (
-    <div>
+    <div className="about">
       <p>
         Born and raised in the beautiful city of Viana do Castelo, Portugal, I studied and graduated in what is commonly known in southern Europe as "Informatics Engineering", at Universidade do Minho, Braga.
       </p>
