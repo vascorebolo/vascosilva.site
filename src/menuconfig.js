@@ -14,8 +14,8 @@ const routes = [
     showLink: true,
   },
   {
-    label: "Portfolio",
-    path: "/portfolio",
+    label: "Photos",
+    path: "/photos",
     exact: false,
     component: "Portfolio",
     showLink: true,

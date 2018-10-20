@@ -3,7 +3,6 @@
 
 * {
   box-sizing: border-box;
-  box-sizing: content-box;
 }
 
 body {
@@ -51,4 +50,16 @@ p {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+}
+
+p, h1, h2, h3, h4 {
+  margin: 0;
+}
+
+p {
+  margin: 5px 0;
+}
+
+h1, h2, h3, h4 {
+  margin-bottom: 10px;
 }

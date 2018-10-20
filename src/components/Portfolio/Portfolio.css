@@ -15,18 +15,22 @@
 
 .gallery img {
   display: inline-block;
-  max-height: 100%;
+  margin-right: 10px;
+  max-height: calc(100% - 30px);
 }
 
 .gallery-info {
   display: inline-block;
-  padding: 10px 20px 10px 0;
+  padding: 10px 40px 10px 0;
   vertical-align: top;
-  min-width: 230px;
+  width: 230px;
+  white-space: normal;
+  font-size: 14px;
 }
 
 .gallery-buttons {
   margin-bottom: 10px;
+  margin-top: -8px;
 }
 
 .gallery-button {
@@ -37,4 +41,8 @@
   cursor: pointer;
   margin-right: 10px;
   padding: 5px 10px;
+}
+
+.gallery-button:focus {
+  outline: 0;
 }

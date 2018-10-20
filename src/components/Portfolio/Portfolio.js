@@ -42,8 +42,8 @@ class Portfolio extends Component {
         <div className="h100 gallery-container">
           <div className="gallery">
             <div className="gallery-info">
-              <h2>{gallery.title}</h2>
-              <p>{gallery.description}</p>
+              <h3>{gallery.title}</h3>
+              {gallery.description}
             </div>
             {
               gallery.photos.map((photo, index) => {
@@ -60,7 +60,20 @@ class Portfolio extends Component {
         </div>
       )
     } else {
-      return this.state.isLoadingNames ? null : <p>No gallery selected</p>
+      return this.state.isLoadingNames
+        ? null
+        : <div>
+            <br />
+            <p>A space to share my photos. A space that I can practice some kind of curation to my photographic endeavors.</p>
+            <p>
+              I would be lying if I told you I only make photos to myself. I do it for my own pleasure, putting my personal
+              tastes and feelings in everything I point my camera to, but the ultimate goal is always to share my vision, my
+              way of looking into the world.
+            </p>
+            <p>
+              I consider myself lucky if I can "touch" someone, somehow...
+            </p>
+          </div>
     }
   }
 
