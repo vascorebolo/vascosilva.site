@@ -54,4 +54,8 @@
   .gallery img {
     max-width: 100%;
   }
+
+  .gallery-info {
+    width: 100%;
+  }
 }
