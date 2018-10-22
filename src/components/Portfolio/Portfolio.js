@@ -38,9 +38,10 @@ class Portfolio extends Component {
 
   renderGallery() {
     let gallery = this.state.gallery
+
     if (gallery != null) {
       return (
-        <div className="h100 gallery-container">
+        <>
           <div className="gallery">
             <div className="gallery-info">
               <h3>{gallery.title}</h3>
@@ -63,12 +64,12 @@ class Portfolio extends Component {
               })
             }
           </div>
-        </div>
+        </>
       )
     } else {
       return this.state.isLoadingNames
         ? null
-        : <div>
+        : <>
             <br />
             <p>A space to share my photos. A space that I can practice some kind of curation to my photographic endeavors.</p>
             <p>
@@ -79,7 +80,7 @@ class Portfolio extends Component {
             <p>
               I consider myself lucky if I can "touch" someone, somehow...
             </p>
-          </div>
+          </>
     }
   }
 
@@ -89,7 +90,7 @@ class Portfolio extends Component {
 
   render() {
     return (
-      <div className="portfolio-container h100">
+      <>
         <div className="gallery-buttons">
           {this.state.isLoadingNames ? <Loading /> : null}
           {this.renderGalleryNames()}
@@ -97,7 +98,7 @@ class Portfolio extends Component {
         <div className="gallery-container h100">
           {this.renderGallery()}
         </div>
-      </div>
+      </>
     )
   }
 }
