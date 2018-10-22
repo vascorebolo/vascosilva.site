@@ -3,9 +3,10 @@
   overflow-x: auto;
   position: relative;
   white-space: nowrap;
+  vertical-align: top;
 }
 
-.gallery img {
+.gallery > img {
   display: inline-block;
   margin-right: 10px;
   max-height: calc(100% - 30px);
@@ -14,11 +15,6 @@
 
 .gallery img:last-child {
   margin-right: 0;
-}
-
-.gallery img.Loading {
-  min-height: auto;
-  margin: 0px 50px;
 }
 
 .gallery-info {

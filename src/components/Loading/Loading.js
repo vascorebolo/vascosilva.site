@@ -3,7 +3,13 @@ import loadingGif from './ajax-loader.gif'
 import './Loading.css'
 
 const Loading = () => {
-  return <img className="Loading" src={loadingGif} alt="loading" />
+  return (
+    <div className="load">
+      <div className="line"></div>
+      <div className="line"></div>
+      <div className="line"></div>
+    </div>
+  )
 }
 
 

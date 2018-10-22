@@ -1,0 +1,20 @@
+.gallery-loading {
+  display: inline-block;
+  height: 100%;
+  vertical-align: top;
+  width: 100%;
+}
+
+.gallery-loading-cont {
+  align-items: center;
+  display: flex;
+  height: 90%;
+}
+
+.gallery-loading-cont img {
+  padding: 0 150px;
+}
+
+.gallery-loading + .gallery-loading {
+  display: none;
+}

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Loading from '../Loading'
 import './Portfolio.css'
 import ImageLoader from 'react-loading-image'
+import GalleryPhotoLoading from '../GalleryPhotoLoading'
 
 class Portfolio extends Component {
   state = {
@@ -51,11 +52,12 @@ class Portfolio extends Component {
               gallery.photos.map((photo, index) => {
                 return (
                   <ImageLoader
+                    key={`imageloader-${gallery.title}-${index}`}
                     src={`https://vascosilva.site${photo.path}`}
-                    loading={() => <Loading />}
+                    loading={() => <GalleryPhotoLoading />}
                     image={props => <img
                       src={`https://vascosilva.site${photo.path}`}
-                      key={`gallery-${gallery.title}-${index}`}
+                      key={`photo-${gallery.title}-${index}`}
                       alt={`${gallery.title}-${index}`}
                     /> }
                     error={() => <div>Error</div>}
