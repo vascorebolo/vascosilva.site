@@ -94,7 +94,7 @@ class Portfolio extends Component {
           {this.state.isLoadingNames ? <Loading /> : null}
           {this.renderGalleryNames()}
         </div>
-        <div className="gallery-container" className="h100">
+        <div className="gallery-container h100">
           {this.renderGallery()}
         </div>
       </div>

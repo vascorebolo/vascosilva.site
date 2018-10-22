@@ -33,6 +33,12 @@ body {
   min-height: 100vh;
 }
 
+@media (max-width: 880px) {
+  #root {
+    display: block;
+  }
+}
+
 a {
   color: #444;
 }

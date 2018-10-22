@@ -17,6 +17,7 @@
   display: inline-block;
   margin-right: 10px;
   max-height: calc(100% - 30px);
+  min-height: calc(100% - 30px);
 }
 
 .gallery-info {
@@ -45,4 +46,16 @@
 
 .gallery-button:focus {
   outline: 0;
+}
+
+@media (max-width: 880px) {
+  .gallery {
+    height: auto;
+    position: relative;
+    white-space: normal;
+  }
+
+  .gallery img {
+    max-width: 100%;
+  }
 }
