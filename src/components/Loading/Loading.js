@@ -1,5 +1,4 @@
 import React from 'react'
-import loadingGif from './ajax-loader.gif'
 import './Loading.css'
 
 const Loading = () => {
