@@ -15,3 +15,11 @@
   max-height: 90%;
   max-width: 90%;
 }
+
+@media (max-width: 880px) {
+  .Home {
+    padding: 20px 0;
+    margin-top: 50%;
+    transform: translateY(-50%);
+  }
+}
