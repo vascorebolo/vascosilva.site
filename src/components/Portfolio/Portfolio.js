@@ -48,7 +48,7 @@ class Portfolio extends Component {
               <h3>{gallery.title}</h3>
               {gallery.description}
             </div>
-            
+
             {
               gallery.photos.map((photo, index) => {
                 return (
