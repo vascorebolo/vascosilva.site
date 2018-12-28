@@ -1,12 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Link, Route } from 'react-router-dom'
 import './MainNav.css'
 
 const MainNav = ({ title, routes }) => {
   function renderLink(item, index) {
     if (item.showLink)
-      return <Link to={item.path} key={`${index}-link`}>{ item.label }</Link>
+      return (
+        <Route
+          key={`link-to-${item.path}`}
+          path={item.path}
+          children={({ match }) => (
+            <Link
+              className={match ? "active" : ""}
+              to={item.path} key={`${index}-link`}
+            >
+              { item.label }
+            </Link>
+          )}
+        />
+      )
   }
 
   function renderLinks() {
@@ -17,11 +30,15 @@ const MainNav = ({ title, routes }) => {
 
   return (
     <div className="MainNavContainer">
-      <div className="MainNavTitle">
-        <Link to={'/'}>
-          { title }
-        </Link>
-      </div>
+      <Route
+        path={'/'}
+        exact
+        children={({ match }) => (
+          <Link to={'/'} className={match ? "active" : ""}>
+            { title }
+          </Link>
+        )}
+      />
       <nav className="MainNav">
         { renderLinks() }
       </nav>

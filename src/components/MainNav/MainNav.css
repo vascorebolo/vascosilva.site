@@ -5,7 +5,8 @@
   padding: 8px 0;
 }
 
-.MainNav a {
+.MainNav a,
+.MainNavContainer > a {
   border: 1px solid #444;
   color: #444;
   cursor: pointer;
@@ -18,7 +19,10 @@
   transition: background .1s ease-in;
 }
 
-.MainNav a:hover {
+.MainNav a:hover,
+.MainNav a.active,
+.MainNavContainer > a:hover,
+.MainNavContainer > a.active {
   background: #444;
   color: #fff;
 }
@@ -27,24 +31,4 @@
   align-items: center;
   justify-content: flex-start;
   display: flex;
-}
-
-.MainNavTitle {
-  align-items: center;
-  border: 1px solid #444;
-  margin-right: 15px;
-  transition: background .1s ease-in;
-}
-
-.MainNavTitle:hover {
-  background: tomato;
-}
-
-.MainNavTitle a {
-  color: #444;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 20px;
-  padding: 0 20px;
-  text-decoration: none;
 }
