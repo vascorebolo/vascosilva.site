@@ -19,6 +19,7 @@
 
 .gallery-info {
   display: inline-block;
+  min-width: 300px;
   padding: 10px 40px 10px 0;
   vertical-align: top;
   width: 300px;
@@ -27,7 +28,7 @@
 
 .gallery-buttons {
   margin-bottom: 10px;
-  margin-top: -8px;
+  margin-top: -18px;
 }
 
 .gallery-button {
@@ -37,6 +38,7 @@
   color: #fff;
   cursor: pointer;
   margin-right: 10px;
+  margin-top: 10px;
   padding: 5px 10px;
 }
 
@@ -58,16 +60,22 @@
 @media (max-width: 880px) {
   .gallery {
     height: auto;
+    padding-bottom: 40px;
     position: relative;
     white-space: normal;
   }
 
   .gallery img {
+    margin-right: 0;
     margin-top: 15px;
     max-width: 100%;
   }
 
   .gallery-info {
     width: 100%;
+  }
+
+  .gallery-button {
+    margin-top: 15px;
   }
 }

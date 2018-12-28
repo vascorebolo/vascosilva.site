@@ -7,6 +7,10 @@
     margin: 0 10px;
 }
 
+.load {
+  margin-top: 40px;
+}
+
 .load .line:nth-last-child(1) {
   animation: loadingC .8s .1s linear infinite;
 }
