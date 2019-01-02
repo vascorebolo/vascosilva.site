@@ -9,6 +9,7 @@
 
 .load {
   margin-top: 40px;
+  min-width: 100px;
 }
 
 .load .line:nth-last-child(1) {

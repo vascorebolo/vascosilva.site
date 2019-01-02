@@ -6,6 +6,7 @@ import GalleryPhotoLoading from '../GalleryPhotoLoading'
 import HorizontalScroll from 'react-scroll-horizontal'
 import Media from 'react-media'
 import Draggable from 'react-draggable'
+import { Link, Route, Switch } from 'react-router-dom'
 
 class Portfolio extends Component {
   state = {
@@ -20,7 +21,6 @@ class Portfolio extends Component {
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({ galleries: responseJson.entries, isLoadingNames: false })
-        console.log(this.state.galleries)
       })
       .catch((error) => {
         console.error(error)
@@ -30,14 +30,15 @@ class Portfolio extends Component {
 
   renderGalleryNames() {
     return this.state.galleries.map((gallery, index) =>
-      <button
-        className="gallery-button"
-        key={`gallery-${index}`}
-        data-gallery={index}
-        onClick={this.handleClickGallerySelect.bind(this)}
-      >
-        {gallery.title}
-      </button>
+      // <button
+      //   className="gallery-button"
+      //   key={`gallery-${index}`}
+      //   data-gallery={index}
+      //   onClick={this.handleClickGallerySelect.bind(this)}
+      // >
+      //   {gallery.title}
+      // </button>
+      <Link to={`${this.props.match.path}/${gallery._id}`} key={`gallery-${gallery._id}`} data-gallery={index} onClick={this.handleClickGallerySelect.bind(this)}>{gallery.title}</Link>
     )
   }
 
@@ -103,39 +104,83 @@ class Portfolio extends Component {
     this.setState({ deltaX: data.deltaX * 2 })
   }
 
-  renderGallery() {
-    let gallery = this.state.gallery
+
+
+  handleClickGallerySelect(e) {
+    console.log('===============================>', this.state.galleries[e.target.dataset.gallery]);
+    this.setState({gallery: this.state.galleries[e.target.dataset.gallery]})
+  }
+
+  myGallery() {
+    return (
+      <GalleryRoute isLoadingNames={this.state.isLoadingNames} gallery={this.state.gallery} />
+    )
+  }
+
+  render() {
+    const { match } = this.props
+    return (
+      <>
+        <div className="gallery-buttons">
+          {this.state.isLoadingNames ? <Loading /> : null}
+          {this.renderGalleryNames()}
+        </div>
+        <div className="gallery-container h100">
+          <h1>test</h1>
+          <Route path={`${match.path}/:topicId`} component={this.myGallery.bind(this)} />
+          <Route
+            exact
+            path={match.path}
+            render={() => <h3>Please select a topic.</h3>}
+          />
+          <h2>end</h2>
+        </div>
+      </>
+    )
+  }
+}
+
+export default Portfolio
+
+const GalleryRoute = ({gallery, isLoadingNames}) => {
+
+  const renderImages = (gallery) => {
+    let items = []
+
+
+    gallery.photos.forEach((photo, index) => {
+      items.push(
+        <ImageLoader
+          key={`imageloader-${gallery.title}-${index}`}
+          src={`https://vascosilva.site${photo.path}`}
+          loading={() => <GalleryPhotoLoading />}
+          image={props => <img
+            src={`https://vascosilva.site${photo.path}`}
+            key={`photo-${gallery.title}-${index}`}
+            alt={`${gallery.title}-${index}`}
+          /> }
+          error={() => <div>Error</div>}
+        />
+      )
+    })
+
+    return items
+  }
+
+  const renderGallery = () => {
+    console.table(gallery);
 
     if (gallery != null) {
       return (
         <>
-        <Media query="(min-width: 880px)">
-          {matches =>
-            matches ? (
-              <Draggable
-                axis="x"
-                onDrag={this.handleDrag}
-              >
-                <div>
-                  <HorizontalScroll
-                    pageLock      = { true }
-                    reverseScroll = { true }
-                    animValues={this.state.deltaX}
-                  >
-                    { this.renderImages(gallery) }
-                  </HorizontalScroll>
-                </div>
-              </Draggable>
-            ) : (
-              this.renderGalleryImages(gallery)
-            )
-          }
-        </Media>
+
+
+              {  renderImages(gallery) }
 
         </>
       )
     } else {
-      return this.state.isLoadingNames
+      return isLoadingNames
         ? null
         : <>
             <br />
@@ -152,23 +197,7 @@ class Portfolio extends Component {
     }
   }
 
-  handleClickGallerySelect(e) {
-    this.setState({gallery: this.state.galleries[e.target.dataset.gallery]})
-  }
-
-  render() {
-    return (
-      <>
-        <div className="gallery-buttons">
-          {this.state.isLoadingNames ? <Loading /> : null}
-          {this.renderGalleryNames()}
-        </div>
-        <div className="gallery-container h100">
-          {this.renderGallery()}
-        </div>
-      </>
-    )
-  }
+  return (
+    renderGallery()
+  )
 }
-
-export default Portfolio
