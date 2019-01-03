@@ -7,6 +7,7 @@ import HorizontalScroll from 'react-scroll-horizontal'
 import Media from 'react-media'
 import Draggable from 'react-draggable'
 import { Link, Route, Switch } from 'react-router-dom'
+import Gallery from './Gallery'
 
 class Portfolio extends Component {
   state = {
@@ -38,7 +39,13 @@ class Portfolio extends Component {
       // >
       //   {gallery.title}
       // </button>
-      <Link to={`${this.props.match.path}/${gallery._id}`} key={`gallery-${gallery._id}`} data-gallery={index}>{gallery.title}</Link>
+      <Link
+        to={`${this.props.match.path}/${gallery.slug}`}
+        key={`gallery-${index}`}
+        className="gallery-button"
+      >
+        {gallery.title}
+      </Link>
     )
   }
 
@@ -106,16 +113,10 @@ class Portfolio extends Component {
 
 
 
-  handleClickGallerySelect(e) {
-    console.log('===============================>', this.state.galleries[e.target.dataset.gallery]);
-    this.setState({gallery: this.state.galleries[e.target.dataset.gallery]})
-  }
-
-  myGallery() {
-    return (
-      <GalleryRoute isLoadingNames={this.state.isLoadingNames} gallery={this.state.gallery} />
-    )
-  }
+  // handleClickGallerySelect(e) {
+  //   console.log('===============================>', this.state.galleries[e.target.dataset.gallery]);
+  //   this.setState({gallery: this.state.galleries[e.target.dataset.gallery]})
+  // }
 
   render() {
     const { match } = this.props
@@ -126,14 +127,12 @@ class Portfolio extends Component {
           {this.renderGalleryNames()}
         </div>
         <div className="gallery-container h100">
-          <h1>test</h1>
-          <Route path={`${match.path}/:topicId`} component={GalleryRoute} />
+          <Route path={`${match.path}/:slug`} render={(props) => <Gallery {...props} galleries={this.state.galleries} />} />
           <Route
             exact
             path={match.path}
-            render={() => <h3>Please select a topic.</h3>}
+            render={() => <h3>Please select a gallery.</h3>}
           />
-          <h2>end</h2>
         </div>
       </>
     )
@@ -141,9 +140,3 @@ class Portfolio extends Component {
 }
 
 export default Portfolio
-
-const GalleryRoute = ({match}) => {
-  return (
-    <p>{match.params.topicId}</p>
-  )
-}
