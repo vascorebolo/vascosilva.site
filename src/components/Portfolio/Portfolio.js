@@ -42,7 +42,7 @@ class Portfolio extends Component {
             <Link
               to={`${this.props.match.path}/${gallery.slug}`}
               key={`gallery-${index}`}
-              className={`${match.params.slug.toString() === gallery.slug ? "active" : ""} gallery-button`}
+              className={`${match && match.params.slug.toString() === gallery.slug ? "active" : ""} gallery-button`}
             >
               { gallery.title }
             </Link>
