@@ -30,23 +30,26 @@ class Portfolio extends Component {
   }
 
   renderGalleryNames() {
-    return this.state.galleries.map((gallery, index) =>
-      // <button
-      //   className="gallery-button"
-      //   key={`gallery-${index}`}
-      //   data-gallery={index}
-      //   onClick={this.handleClickGallerySelect.bind(this)}
-      // >
-      //   {gallery.title}
-      // </button>
-      <Link
-        to={`${this.props.match.path}/${gallery.slug}`}
-        key={`gallery-${index}`}
-        className="gallery-button"
-      >
-        {gallery.title}
-      </Link>
-    )
+    return this.state.galleries.map((gallery, index) => {
+      const { match } = this.props
+
+      return (
+        <Route
+          key={`gallery-${index}-2`}
+          path={`${match.path}/:slug`}
+          exact
+          children={({ match }) => (
+            <Link
+              to={`${this.props.match.path}/${gallery.slug}`}
+              key={`gallery-${index}`}
+              className={`${match.params.slug.toString() === gallery.slug ? "active" : ""} gallery-button`}
+            >
+              { gallery.title }
+            </Link>
+          )}
+        />
+      )
+    })
   }
 
   renderGalleryInfo(gallery) {
@@ -110,13 +113,6 @@ class Portfolio extends Component {
   handleDrag = (e,data) => {
     this.setState({ deltaX: data.deltaX * 2 })
   }
-
-
-
-  // handleClickGallerySelect(e) {
-  //   console.log('===============================>', this.state.galleries[e.target.dataset.gallery]);
-  //   this.setState({gallery: this.state.galleries[e.target.dataset.gallery]})
-  // }
 
   render() {
     const { match } = this.props

@@ -33,14 +33,21 @@
 
 .gallery-button {
   appearance: none;
-  background: #444;
+  background: #fff;
   border: 0;
-  color: #fff;
+  border: 1px solid #444;
+  color: #444;
   cursor: pointer;
   margin-right: 10px;
   margin-top: 10px;
   padding: 5px 10px;
   text-decoration: none;
+}
+
+.gallery-button.active {
+  background: #444;
+  border: 1px solid #444;
+  color: #fff;
 }
 
 .scroll-horizontal > div > img {
