@@ -27,8 +27,8 @@
 }
 
 .gallery-buttons {
-  margin-bottom: 10px;
-  margin-top: -5px;
+  margin-bottom: 15px;
+  margin-top: -18px;
 }
 
 .gallery-button {
@@ -38,10 +38,12 @@
   border: 1px solid #444;
   color: #444;
   cursor: pointer;
+  font-size: 12px;
   margin-right: 10px;
   margin-top: 10px;
   padding: 5px 10px;
   text-decoration: none;
+  display: inline-block;
 }
 
 .gallery-button.active {
