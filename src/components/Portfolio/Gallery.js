@@ -89,9 +89,10 @@ class Gallery extends Component {
 
   getGallery = () => {
     const { galleries, match } = this.props
-   if (!galleries) {
+
+    if (!galleries) {
      return <></>
-   } else {
+    } else {
      const gallery = galleries.find((gallery) => {
        console.log(gallery.slug.toString(), match.params.slug)
        return gallery.slug.toString() === match.params.slug
@@ -125,8 +126,8 @@ class Gallery extends Component {
      }
 
      return <></>
-   }
- }
+    }
+  }
 
   render() {
     return (

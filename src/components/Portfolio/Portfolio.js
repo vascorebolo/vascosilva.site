@@ -62,7 +62,10 @@ class Portfolio extends Component {
           {this.renderGalleryNames()}
         </div>
         <div className="gallery-container h100">
-          <Route path={`${match.path}/:slug`} render={(props) => <Gallery {...props} galleries={this.state.galleries} />} />
+          <Route
+            path={`${match.path}/:slug`}
+            render={(props) => <Gallery {...props} galleries={this.state.galleries} />}
+          />
           <Route
             exact
             path={match.path}
