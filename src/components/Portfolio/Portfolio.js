@@ -61,7 +61,7 @@ class Portfolio extends Component {
           {this.state.isLoadingNames ? <Loading /> : null}
           {this.renderGalleryNames()}
         </div>
-        <div className="gallery-container h100">
+        <div className="gallery-container">
           <Route
             path={`${match.path}/:slug`}
             render={(props) => <Gallery {...props} galleries={this.state.galleries} />}
