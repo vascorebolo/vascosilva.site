@@ -5,6 +5,7 @@ import GalleryPhotoLoading from '../GalleryPhotoLoading'
 import HorizontalScroll from 'react-scroll-horizontal'
 import Media from 'react-media'
 import Draggable from 'react-draggable'
+import Slider from 'react-slick'
 
 class Gallery extends Component {
   static propTypes = {
@@ -14,6 +15,18 @@ class Gallery extends Component {
 
   state = {
     deltaX: 0,
+  }
+
+  constructor(props) {
+    super(props)
+
+    this.sliderRef = React.createRef();
+  }
+
+  componentWillUpdate() {
+    if (this.sliderRef.current) {
+      this.sliderRef.current.slickGoTo(0, false)
+    }
   }
 
   renderGalleryInfo = (gallery) => {
@@ -89,6 +102,15 @@ class Gallery extends Component {
 
   getGallery = () => {
     const { galleries, match } = this.props
+    const settings = {
+      dots: false,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      variableWidth: true,
+      centerMode: true,
+    }
 
     if (!galleries) {
      return <></>
@@ -103,20 +125,10 @@ class Gallery extends Component {
          <Media query="(min-width: 880px)">
           {matches =>
             matches ? (
-              <Draggable
-                axis="x"
-                onDrag={this.handleDrag}
-              >
-                <div>
-                  <HorizontalScroll
-                    pageLock      = { true }
-                    reverseScroll = { true }
-                    animValues={this.state.deltaX}
-                  >
-                    { this.renderDesktopGallery(gallery) }
-                  </HorizontalScroll>
-                </div>
-              </Draggable>
+              <Slider ref={this.sliderRef} {...settings}>
+                { this.renderDesktopGallery(gallery) }
+              </Slider>
+
             ) : (
               this.renderMobileGallery(gallery)
             )

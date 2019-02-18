@@ -11,6 +11,7 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.0.5",
     "react-scroll-horizontal": "^1.6.0",
+    "react-slick": "^0.23.2",
     "react-test-renderer": "^16.5.2",
     "styled-components": "^4.1.1"
   },
