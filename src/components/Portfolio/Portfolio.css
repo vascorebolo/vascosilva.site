@@ -108,7 +108,8 @@
 
 .slick-slide div .gallery-info {
   width: 100px !important;
-  transform: translateX(calc((80vw / 3) * -1));
+  height: auto;
+  transform: translateX(-70%);
 }
 
 .slick-arrow {
@@ -116,6 +117,14 @@
   height: 50px;
   background: #fff;
   border: 1px solid #444;
+}
+
+.slick-arrow.slick-disabled {
+  opacity: 0.25;
+}
+
+.slick-arrow.slick-disabled::before {
+  opacity: 1;
 }
 
 .slick-arrow:hover,
@@ -129,4 +138,14 @@
 
 .slick-prev {
   left: -60px;
+}
+
+.slick-next:before, .slick-prev:before {
+  color: #444;
+  font-family: inherit;
+}
+
+.slick-track div div:first-child {
+  display: flex;
+  align-items: center;
 }
