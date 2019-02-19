@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import { array, any } from 'prop-types'
 import ImageLoader from 'react-loading-image'
 import GalleryPhotoLoading from '../GalleryPhotoLoading'
-import HorizontalScroll from 'react-scroll-horizontal'
 import Media from 'react-media'
-import Draggable from 'react-draggable'
 import Slider from 'react-slick'
 
 class Gallery extends Component {
@@ -13,17 +11,13 @@ class Gallery extends Component {
     match: any.isRequired,
   }
 
-  state = {
-    deltaX: 0,
-  }
-
   constructor(props) {
     super(props)
 
     this.sliderRef = React.createRef();
   }
 
-  componentWillUpdate() {
+  componentDidUpdate() {
     if (this.sliderRef.current) {
       this.sliderRef.current.slickGoTo(0, false)
     }
