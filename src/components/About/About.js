@@ -1,12 +1,48 @@
 import React from 'react'
-import './About.css'
+
+import styled from 'styled-components'
+import ImageLoader from 'react-loading-image'
+
+import colors from 'constants/colors'
+import { small600 } from 'constants/breakpoints'
 import aboutImage from './about.jpg'
+import Loading from 'components/Loading'
+
+const AboutStyled = styled.div`
+  padding-bottom: 40px;
+
+  img {
+    float: left;
+    border: 1px solid ${colors.grey.main};
+    margin-bottom: 5px;
+    margin-right: 30px;
+    max-width: 600px;
+    width: 50%;
+  }
+
+  @media (max-width: ${small600}) {
+    img {
+      display: block;
+      margin-bottom: 20px;
+      margin-right: 0;
+      width: 100%;
+    }
+  }
+`
 
 const About = () => {
   return (
-    <div className="about">
+    <AboutStyled>
       <br />
-      <img src={aboutImage} alt="about" />
+      <ImageLoader
+        src={aboutImage}
+        loading={() => <Loading />}
+        image={props => <img
+          src={aboutImage}
+          alt='self portrait'
+        /> }
+        error={() => <div>Error</div>}
+      />
       <p>
         Born and raised in the beautiful city of Viana do Castelo, Portugal, I studied and graduated in what is commonly known in southern Europe as "Informatics Engineering", at Universidade do Minho, Braga.
       </p>
@@ -25,7 +61,7 @@ const About = () => {
         I often use my strobes to get some visions and images I have in my mind, and to portray people the best I can.
         I'm also very enthusiastic on doing analog photography, and my cameras' shelf always has some more space to another analog camera.
       </p>
-    </div>
+    </AboutStyled>
   );
 };
 
