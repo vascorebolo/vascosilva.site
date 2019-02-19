@@ -4,6 +4,7 @@ import ImageLoader from 'react-loading-image'
 import GalleryPhotoLoading from '../GalleryPhotoLoading'
 import Media from 'react-media'
 import Slider from 'react-slick'
+import LoadingSimple from '../Loading/LoadingSimple'
 
 class Gallery extends Component {
   static propTypes = {
@@ -42,7 +43,7 @@ class Gallery extends Component {
         <ImageLoader
           key={`imageloader-${gallery.title}-${index}`}
           src={`https://vascosilva.site${photo.path}`}
-          loading={() => <GalleryPhotoLoading />}
+          loading={() => <LoadingSimple />}
           image={props => <img
             src={`https://vascosilva.site${photo.path}`}
             key={`photo-${gallery.title}-${index}`}

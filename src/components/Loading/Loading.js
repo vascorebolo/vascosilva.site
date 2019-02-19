@@ -10,9 +10,9 @@ const DivLoading = styled.div`
     display: inline-block;
     width: 20px;
     height: 20px !important;
-    border-radius: 50%;
     background-color: #444;
     margin: 0 10px;
+    opacity: 0.5;
   }
 
   & .line:nth-last-child(1) {
