@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
-import MainNav from './components/MainNav'
+
 import RenderZone from './components/RenderZone'
-import routes from './menuconfig'
-import './App.css'
+
+import 'App.css'
+import MainNav from 'components/MainNav'
+import routes from 'menuconfig'
+import Footer from 'components/Footer'
+
 
 class App extends Component {
   render() {
@@ -16,6 +20,7 @@ class App extends Component {
         <div className="MainContainer">
           <RenderZone routes={routes} />
         </div>
+        <Footer />
       </div>
     );
   }

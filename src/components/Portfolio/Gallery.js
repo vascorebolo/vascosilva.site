@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import { array, any } from 'prop-types'
 import ImageLoader from 'react-loading-image'
 import GalleryPhotoLoading from '../GalleryPhotoLoading'
-import HorizontalScroll from 'react-scroll-horizontal'
 import Media from 'react-media'
-import Draggable from 'react-draggable'
+import Slider from 'react-slick'
+import LoadingSimple from '../Loading/LoadingSimple'
+import MetaTags from 'react-meta-tags'
 
 class Gallery extends Component {
   static propTypes = {
@@ -12,8 +13,16 @@ class Gallery extends Component {
     match: any.isRequired,
   }
 
-  state = {
-    deltaX: 0,
+  constructor(props) {
+    super(props)
+
+    this.sliderRef = React.createRef();
+  }
+
+  componentDidUpdate() {
+    if (this.sliderRef.current) {
+      this.sliderRef.current.slickGoTo(0, false)
+    }
   }
 
   renderGalleryInfo = (gallery) => {
@@ -35,7 +44,7 @@ class Gallery extends Component {
         <ImageLoader
           key={`imageloader-${gallery.title}-${index}`}
           src={`https://vascosilva.site${photo.path}`}
-          loading={() => <GalleryPhotoLoading />}
+          loading={() => <LoadingSimple />}
           image={props => <img
             src={`https://vascosilva.site${photo.path}`}
             key={`photo-${gallery.title}-${index}`}
@@ -89,6 +98,15 @@ class Gallery extends Component {
 
   getGallery = () => {
     const { galleries, match } = this.props
+    const settings = {
+      dots: false,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      variableWidth: true,
+      centerMode: true,
+    }
 
     if (!galleries) {
      return <></>
@@ -100,28 +118,25 @@ class Gallery extends Component {
 
      if (gallery) {
        return (
-         <Media query="(min-width: 880px)">
-          {matches =>
-            matches ? (
-              <Draggable
-                axis="x"
-                onDrag={this.handleDrag}
-              >
-                <div>
-                  <HorizontalScroll
-                    pageLock      = { true }
-                    reverseScroll = { true }
-                    animValues={this.state.deltaX}
-                  >
-                    { this.renderDesktopGallery(gallery) }
-                  </HorizontalScroll>
-                </div>
-              </Draggable>
-            ) : (
-              this.renderMobileGallery(gallery)
-            )
-          }
-        </Media>
+         <>
+           <MetaTags>
+              <title>Vasco Silva</title>
+              <meta name="description" content={gallery.description} />
+              <meta property="og:title" content={`series - ${gallery.title}`} />
+            </MetaTags>
+           <Media query="(min-width: 880px)">
+            {matches =>
+              matches ? (
+                <Slider ref={this.sliderRef} {...settings}>
+                  { this.renderDesktopGallery(gallery) }
+                </Slider>
+
+              ) : (
+                this.renderMobileGallery(gallery)
+              )
+            }
+          </Media>
+        </>
        )
      }
 

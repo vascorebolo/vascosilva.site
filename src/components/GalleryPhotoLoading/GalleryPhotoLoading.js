@@ -1,14 +1,37 @@
 import React from 'react'
+
+import styled from 'styled-components'
+
 import Loading from '../Loading'
-import './GalleryPhotoLoading.css'
+
+const GalleryLoading = styled.div`
+  display: inline-block;
+  height: 100%;
+  vertical-align: top;
+  width: 100%;
+
+  &-cont {
+    align-items: center;
+    display: flex;
+    height: 90%;
+
+    img {
+      padding: 0 150px;
+    }
+  }
+
+  & + & {
+    display: none;
+  }
+`
 
 const GalleryPhotoLoading = () => {
   return (
-    <div className="gallery-loading">
+    <GalleryLoading>
       <div className="gallery-loading-cont">
         <Loading />
       </div>
-    </div>
+    </GalleryLoading>
   )
 }
 
