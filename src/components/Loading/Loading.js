@@ -2,6 +2,8 @@ import React from 'react'
 
 import styled from 'styled-components'
 
+import colors from 'constants/colors'
+
 const DivLoading = styled.div`
   margin-top: 40px;
   min-width: 100px;
@@ -10,7 +12,7 @@ const DivLoading = styled.div`
     display: inline-block;
     width: 20px;
     height: 20px !important;
-    background-color: #444;
+    background-color: ${colors.grey.main};
     margin: 0 10px;
     opacity: 0.5;
   }

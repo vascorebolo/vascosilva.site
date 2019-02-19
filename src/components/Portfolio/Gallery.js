@@ -5,6 +5,7 @@ import GalleryPhotoLoading from '../GalleryPhotoLoading'
 import Media from 'react-media'
 import Slider from 'react-slick'
 import LoadingSimple from '../Loading/LoadingSimple'
+import MetaTags from 'react-meta-tags'
 
 class Gallery extends Component {
   static propTypes = {
@@ -117,18 +118,25 @@ class Gallery extends Component {
 
      if (gallery) {
        return (
-         <Media query="(min-width: 880px)">
-          {matches =>
-            matches ? (
-              <Slider ref={this.sliderRef} {...settings}>
-                { this.renderDesktopGallery(gallery) }
-              </Slider>
+         <>
+           <MetaTags>
+              <title>Vasco Silva</title>
+              <meta name="description" content={gallery.description} />
+              <meta property="og:title" content={`series - ${gallery.title}`} />
+            </MetaTags>
+           <Media query="(min-width: 880px)">
+            {matches =>
+              matches ? (
+                <Slider ref={this.sliderRef} {...settings}>
+                  { this.renderDesktopGallery(gallery) }
+                </Slider>
 
-            ) : (
-              this.renderMobileGallery(gallery)
-            )
-          }
-        </Media>
+              ) : (
+                this.renderMobileGallery(gallery)
+              )
+            }
+          </Media>
+        </>
        )
      }
 
