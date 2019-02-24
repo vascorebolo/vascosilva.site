@@ -1,12 +1,33 @@
 import React from 'react'
 
 import styled from 'styled-components'
-import ImageLoader from 'react-loading-image'
 
-import bgImg from './bg2.jpg'
-import bgImgMobile from './bg3.jpg'
+import noise from './noise.png'
 import colors from 'constants/colors'
-import Loading from 'components/Loading'
+import RandomP from 'components/RandomP'
+
+const words = [
+  'street photography',
+  'portraits',
+  'black and white',
+  'color',
+  'analog',
+  '35 mm',
+  '120 mm',
+  'cameras',
+  'landscapes',
+  'portugal',
+  'kodak',
+  'tri-x',
+  'summicron',
+  'braga',
+  'viana do castelo',
+  'portugal',
+  'film',
+  'vasco',
+  '50mm',
+  '28mm',
+]
 
 const HomeStyled = styled.div`
   align-items: center;
@@ -16,45 +37,33 @@ const HomeStyled = styled.div`
   border: 1px solid ${colors.grey.main};
   position: relative;
   overflow: hidden;
-  background-image: url(${props => props.bgImg});
-  background-size: cover;
+  background-color: rgba(68, 68, 68, .2);
+  background-image: url(${props => props.noiseImg});
+  background-position: cover;
+
 
   img {
     width: 20vw;
     border-radius: 10vw;
   }
 
-  p {
-    font-weight: 700;
-    color: #fff;
-    position: auto;
-    text-align: center;
-    font-size: 12vw;
-    opacity: 0;
-    transform: translateY(-700%);
-  }
-
   @media (max-width: 880px) {
     padding: 20px 0;
     height: 80vh;
-    background-image: url(${props => props.bgImgMobile});
-
-    p {
-      top: auto;
-      bottom: 5vh;
-      left: auto;
-      right: -10vw;
-    }
   }
 
 `
 
 const Home = () => {
   return (
-    <HomeStyled bgImg={bgImg} bgImgMobile={bgImgMobile}>
-      <p>
-      VASCO SILVA
-      </p>
+    <HomeStyled noiseImg={noise}>
+      {
+        words.map(word => (
+          <RandomP>
+            { word }
+          </RandomP>
+        ))
+      }
     </HomeStyled>
   )
 }
