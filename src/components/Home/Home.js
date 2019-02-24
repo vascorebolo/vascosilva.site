@@ -41,6 +41,16 @@ const HomeStyled = styled.div`
   background-image: url(${props => props.noiseImg});
   background-position: cover;
 
+  .name {
+    bottom: 0;
+    color: #fff;
+    opacity: 0.8;
+    padding-right: 20px;
+    position: absolute;
+    text-align: right;
+    width: 100%;
+  }
+
   ${media.m`
     padding: 20px 0;
     height: 80vh;
@@ -57,6 +67,7 @@ const Home = () => {
           </RandomP>
         ))
       }
+      <p className="name">"<b>Mean</b>ingful Words" - 2019</p>
     </HomeStyled>
   )
 }
