@@ -50,7 +50,12 @@ class Portfolio extends Component {
   renderEmpty() {
     return this.state.isLoadingNames
       ? <></>
-      : <h3 style={{fontFamily: 'system-ui'}}>↑<span>&nbsp;</span><span>&nbsp;</span>Please select a series above</h3>
+      : (
+        <>
+          <h3 style={{fontFamily: 'system-ui'}}>↑<span>&nbsp;</span><span>&nbsp;</span>Please select a series above</h3>
+          <p style={{ paddingLeft: 25, marginTop: -10 }}>Clicking in a selected series takes you back to the beginning</p>
+        </>
+      )
   }
 
   render() {

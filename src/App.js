@@ -1,17 +1,36 @@
 import React, { Component } from 'react'
 
 import RenderZone from './components/RenderZone'
+import styled from 'styled-components'
 
-import 'App.css'
 import MainNav from 'components/MainNav'
 import routes from 'menuconfig'
 import Footer from 'components/Footer'
+import mainBreakPoint from 'constants/breakpoints'
+import media from 'constants/breakpoints'
 
+const AppStyled = styled.div`
+  width: 80vw;
+  margin: 0 auto;
+  height: 70vh;
+
+  .MainContainer {
+    padding: 10px 0 0 0;
+    height: 90%;
+  }
+
+  ${media.m`
+    height: auto;
+    margin: 0;
+    padding: 0 10px;
+    width: 100%;
+  `}
+`
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <AppStyled mainBreakPoint={mainBreakPoint}>
         <header className="App-header">
           <nav>
             <MainNav routes={routes} title={'Vasco Silva'} />
@@ -21,7 +40,7 @@ class App extends Component {
           <RenderZone routes={routes} />
         </div>
         <Footer />
-      </div>
+      </AppStyled>
     );
   }
 }

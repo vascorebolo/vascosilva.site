@@ -4,9 +4,9 @@ import styled from 'styled-components'
 import ImageLoader from 'react-loading-image'
 
 import colors from 'constants/colors'
-import { small600 } from 'constants/breakpoints'
 import aboutImage from './about.jpg'
 import Loading from 'components/Loading'
+import media from 'constants/breakpoints'
 
 const AboutStyled = styled.div`
   padding-bottom: 40px;
@@ -20,14 +20,14 @@ const AboutStyled = styled.div`
     width: 50%;
   }
 
-  @media (max-width: ${small600}) {
+  ${media.s`
     img {
       display: block;
       margin-bottom: 20px;
       margin-right: 0;
       width: 100%;
     }
-  }
+  `}
 `
 
 const About = () => {
