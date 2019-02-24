@@ -27,7 +27,7 @@ const RandomP = ({ children }) => {
   const randomSize = randomInterval(3, 10)
   const randomOpacity = randomInterval(0.2, 0.5, false)
   const randomAngle = randomInterval(0, 180)
-  const randomSpread = randomInterval(5, 20);
+  const randomSpread = randomInterval(5, 30);
 
   return (
     <PStyled top={randomTop} left={randomLef} size={randomSize} op={randomOpacity} angle={randomAngle} spread={randomSpread}>
