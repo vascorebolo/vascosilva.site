@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
 import { array, any } from 'prop-types'
+
 import ImageLoader from 'react-loading-image'
-import GalleryPhotoLoading from '../GalleryPhotoLoading'
-import Media from 'react-media'
 import Slider from 'react-slick'
-import LoadingSimple from '../Loading/LoadingSimple'
+import Media from 'react-media'
 import MetaTags from 'react-meta-tags'
+import { animateScroll } from 'react-scroll'
+
+import GalleryPhotoLoading from '../GalleryPhotoLoading'
+import LoadingSimple from '../Loading/LoadingSimple'
+import Button from 'components/Button'
 
 class Gallery extends Component {
   static propTypes = {
@@ -84,10 +88,15 @@ class Gallery extends Component {
     )
   }
 
+  goToTop = () => {
+    animateScroll.scrollToTop()
+  }
+
   renderMobileGallery = (gallery) => {
     return (
       <>
         { this.renderGalleryImages(gallery) }
+        <Button callback={this.goToTop}>go to top</Button>
       </>
     )
   }

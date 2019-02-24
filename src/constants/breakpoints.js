@@ -16,4 +16,10 @@ const media = Object.keys(sizes).reduce((acc, label) => {
   return acc
 }, {})
 
+export const aboveM = `
+${media.s`
+  display: none !important;
+`}
+`
+
 export default media
