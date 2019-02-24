@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import noise from './noise.png'
 import colors from 'constants/colors'
 import RandomP from 'components/RandomP'
+import media from 'constants/breakpoints'
 
 const words = [
   'street photography',
@@ -16,7 +17,6 @@ const words = [
   '120 mm',
   'cameras',
   'landscapes',
-  'portugal',
   'kodak',
   'tri-x',
   'summicron',
@@ -24,7 +24,7 @@ const words = [
   'viana do castelo',
   'portugal',
   'film',
-  'vasco',
+  'vasco silva',
   '50mm',
   '28mm',
 ]
@@ -41,17 +41,10 @@ const HomeStyled = styled.div`
   background-image: url(${props => props.noiseImg});
   background-position: cover;
 
-
-  img {
-    width: 20vw;
-    border-radius: 10vw;
-  }
-
-  @media (max-width: 880px) {
+  ${media.m`
     padding: 20px 0;
     height: 80vh;
-  }
-
+  `}
 `
 
 const Home = () => {
@@ -59,7 +52,7 @@ const Home = () => {
     <HomeStyled noiseImg={noise}>
       {
         words.map(word => (
-          <RandomP>
+          <RandomP key={word}>
             { word }
           </RandomP>
         ))

@@ -2,6 +2,8 @@ import React from 'react'
 
 import styled from 'styled-components'
 
+import media from 'constants/breakpoints'
+
 const PStyled = styled.p`
   position: absolute;
   top: ${props => props.top}%;
@@ -13,12 +15,17 @@ const PStyled = styled.p`
   font-weight: 700;
   color: transparent;
   text-shadow: 0 0 ${props => props.spread}px rgba(0,0,0,${props => props.op});
+  transform-origin: center center;
+
+  ${media.m`
+    font-size: ${props => props.size}vh;
+  `}
 `
 
 const RandomP = ({ children }) => {
   const randomInterval = (min, max, floor = true) => {
     const random = Math.random() * (max - min) + min
-    console.log(random, Math.floor(random))
+
     return floor ? Math.floor(random) : random
   }
 
