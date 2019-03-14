@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-import colors from '../../constants/colors'
 import Input from '../forms/Input'
 import Button from '../Button'
 import mailConfig from '../../mail-config'
