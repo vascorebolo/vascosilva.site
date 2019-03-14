@@ -96,7 +96,7 @@ class Gallery extends Component {
     return (
       <>
         { this.renderGalleryImages(gallery) }
-        <Button callback={this.goToTop}>go to top</Button>
+        <Button callback={this.goToTop} style={{ width: '100%' }}>back to top</Button>
       </>
     )
   }

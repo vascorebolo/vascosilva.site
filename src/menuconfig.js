@@ -19,7 +19,14 @@ const routes = [
     exact: false,
     component: "Portfolio",
     showLink: true,
-  }
+  },
+  {
+    label: "Contact",
+    path: "/contact",
+    exact: true,
+    component: "Contact",
+    showLink: true,
+  },
 ]
 
 export default routes
