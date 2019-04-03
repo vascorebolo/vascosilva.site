@@ -46,7 +46,7 @@ class Contact extends Component {
         console.log('=======', response)
         if (response === 'OK') {
           this.setState(this.initialState)
-          alert('email enviado')
+          alert('Message sent. Thanks.')
         }
       }
     );
