@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import Input from '../forms/Input'
 import Button from '../Button'
-import mailConfig from '../../mail-config'
+import { mailConfigToken } from '../../mail-config'
 import Loading from '../Loading/Loading'
 
 class Contact extends Component {
@@ -32,7 +32,7 @@ class Contact extends Component {
     this.setState({ sending: true })
 
     Email.send({ // eslint-disable-line no-undef
-      ...mailConfig,
+      ...mailConfigToken,
       To : 'vasco.s.rebolo@gmail.com',
       From : "contact@vascosilva.site",
       Subject : "[Contact] vascosilva.site",
@@ -43,11 +43,11 @@ class Contact extends Component {
       `
     }).then(
       (response) => {
-        console.log('=======', message)
-        if (response === 'Ok') {
+        console.log('=======', response)
+        if (response === 'OK') {
+          this.setState(this.initialState)
           alert('email enviado')
         }
-        this.setState(this.initialState)
       }
     );
   }
@@ -57,7 +57,7 @@ class Contact extends Component {
 
     return (
       <FormWrapper sending={sending}>
-        <p style={{ paddingTop: 10 }}>Send me a message using the form below</p>
+        <p style={{ paddingTop: 10, marginBottom: 20 }}>Send me a message using the form below</p>
         <Input
           id="email"
           value={email}
@@ -82,6 +82,9 @@ class Contact extends Component {
         </Button>
         <div className="overlay">
           <Loading />
+          <br />
+          <p>Sending message</p>
+          <p>Be patient, server is lazy. It can take several seconds.</p>
         </div>
       </FormWrapper>
     )
@@ -97,6 +100,7 @@ const FormWrapper = styled.div`
     background-color: rgba(255, 255, 255, .6);
     bottom: 0;
     display: ${props => props.sending ? 'flex' : 'none'};
+    flex-direction: column;
     justify-content: center;
     left: 0;
     position: absolute;
