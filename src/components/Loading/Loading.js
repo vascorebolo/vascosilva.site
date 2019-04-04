@@ -6,7 +6,7 @@ import colors from 'constants/colors'
 
 const DivLoading = styled.div`
   margin-top: 40px;
-  min-width: 100px;
+  min-width: 150px;
 
   .line {
     display: inline-block;
@@ -38,7 +38,7 @@ const DivLoading = styled.div`
 
 const Loading = () => {
   return (
-    <DivLoading>
+    <DivLoading className="loading-div">
       <div className="line"></div>
       <div className="line"></div>
       <div className="line"></div>

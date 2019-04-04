@@ -1,15 +1,46 @@
 import React, { Component } from 'react'
 import { array, any } from 'prop-types'
 
+import styled from 'styled-components'
 import ImageLoader from 'react-loading-image'
-import Slider from 'react-slick'
 import Media from 'react-media'
 import MetaTags from 'react-meta-tags'
 import { animateScroll } from 'react-scroll'
 
 import GalleryPhotoLoading from '../GalleryPhotoLoading'
+import Loading from '../Loading'
 import LoadingSimple from '../Loading/LoadingSimple'
 import Button from 'components/Button'
+
+const GalleryDesktopWrapper = styled.div`
+  display: flex;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 20px;
+  min-width: 150px;
+
+  .error + .error {
+    display: none;
+  }
+
+  .loading-div + .loading-div {
+    display: none;
+  }
+
+  .loading-div {
+    align-self: center;
+  }
+
+  img {
+    height: 100%;
+    margin-right: 20px;
+
+    :last-child {
+      margin-right: 0;
+    }
+  }
+`
 
 class Gallery extends Component {
   static propTypes = {
@@ -38,6 +69,10 @@ class Gallery extends Component {
     )
   }
 
+  scrollBack = () => {
+    document.getElementById('scroll-container').scrollLeft = 0
+  }
+
   renderDesktopGallery(gallery) {
     let items = []
 
@@ -48,16 +83,22 @@ class Gallery extends Component {
         <ImageLoader
           key={`imageloader-${gallery.title}-${index}`}
           src={`https://vascosilva.site${photo.path}`}
-          loading={() => <LoadingSimple />}
+          loading={() => <Loading />}
           image={props => <img
             src={`https://vascosilva.site${photo.path}`}
             key={`photo-${gallery.title}-${index}`}
             alt={`${gallery.title}-${index}`}
           /> }
-          error={() => <div>Error</div>}
+          error={() => <div class="error">Error loading images <span role="img" aria-label="warning">⚠️</span></div>}
         />
       )
     })
+
+    items.push(
+      <Button callback={this.scrollBack} key="button-back">
+        ←
+      </Button>
+    )
 
     return items
   }
@@ -79,7 +120,7 @@ class Gallery extends Component {
                   key={`photo-${gallery.title}-${index}`}
                   alt={`${gallery.title}-${index}`}
                 /> }
-                error={() => <div>Error</div>}
+                error={() => <div>Error loading images <span role="img" aria-label="warning">⚠️</span></div>}
               />
             )
           })
@@ -101,27 +142,18 @@ class Gallery extends Component {
     )
   }
 
-  handleDrag = (e,data) => {
-    this.setState({ deltaX: data.deltaX * 2 })
+
+  handleWheel = (e) => {
+    document.getElementById('scroll-container').scrollLeft += e.deltaY
   }
 
   getGallery = () => {
     const { galleries, match } = this.props
-    const settings = {
-      dots: false,
-      infinite: false,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      variableWidth: true,
-      centerMode: true,
-    }
 
     if (!galleries) {
      return <></>
     } else {
      const gallery = galleries.find((gallery) => {
-       console.log(gallery.slug.toString(), match.params.slug)
        return gallery.slug.toString() === match.params.slug
      })
 
@@ -135,12 +167,11 @@ class Gallery extends Component {
             </MetaTags>
            <Media query="(min-width: 880px)">
             {matches =>
-              matches ? (
-                <Slider ref={this.sliderRef} {...settings}>
+              matches ?
+                <GalleryDesktopWrapper onWheel={this.handleWheel} id="scroll-container">
                   { this.renderDesktopGallery(gallery) }
-                </Slider>
-
-              ) : (
+                </GalleryDesktopWrapper>
+              : (
                 this.renderMobileGallery(gallery)
               )
             }

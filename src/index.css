@@ -14,6 +14,8 @@ body {
     sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #fff;
+  color: #444;
 }
 
 code {
@@ -21,16 +23,10 @@ code {
     monospace;
 }
 
-body {
-  background: #fff;
-  min-height: 100vh;
-  color: #444;
-}
-
 #root {
   display: flex;
   align-items: center;
-  min-height: 100vh;
+  min-height: 99vh;
 }
 
 @media (max-width: 880px) {

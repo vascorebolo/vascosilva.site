@@ -1,18 +1,9 @@
 import React, { Component } from 'react'
 
-import styled from 'styled-components'
-
 import Loading from '../Loading'
 import './Portfolio.css'
 import { Link, Route } from 'react-router-dom'
 import Gallery from './Gallery'
-import media from 'constants/breakpoints'
-
-const ParagAboveM = styled.p`
-${media.s`
-  display: none !important;
-`}
-`
 
 class Portfolio extends Component {
   state = {
@@ -63,7 +54,6 @@ class Portfolio extends Component {
       : (
         <>
           <h3 style={{fontFamily: 'system-ui'}}>↑<span>&nbsp;</span><span>&nbsp;</span>Please select a series above</h3>
-          <ParagAboveM style={{ paddingLeft: 25, marginTop: -10 }}>Clicking in a selected series takes you back to the beginning</ParagAboveM>
         </>
       )
   }

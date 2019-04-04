@@ -18,6 +18,10 @@ const ButtonStyled = styled.button`
     outline: 1px solid ${colors.grey.main};
   }
 
+  :active {
+    background-color: transparent;
+  }
+
   &:disabled {
     opacity: .5;
   }
