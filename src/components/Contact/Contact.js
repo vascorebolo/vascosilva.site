@@ -12,6 +12,8 @@ class Contact extends Component {
     email: '',
     message: '',
     sending: false,
+    sent: false,
+    sendEnabled: false,
   }
 
   constructor(props) {
@@ -20,10 +22,21 @@ class Contact extends Component {
     this.state = this.initialState
   }
 
+  checkEnabledState = () => {
+    const { name, email, message } = this.state
+
+    if (name.length > 0 && email.length > 0 && message.length > 0) {
+      this.setState({ sendEnabled: true })
+    } else {
+      this.setState({ sendEnabled: false })
+    }
+  }
+
   handleChange = (ev) => {
     const id = ev.target.id
 
     this.setState({ [id]: ev.target.value })
+    this.checkEnabledState()
   }
 
   handleSend = () => {
@@ -43,20 +56,52 @@ class Contact extends Component {
       `
     }).then(
       (response) => {
-        console.log('=======', response)
         if (response === 'OK') {
-          this.setState(this.initialState)
-          alert('Message sent. Thanks.')
+          this.setState({ ...this.initialState, sent: true })
         }
       }
     );
   }
 
+  handleSentOk = () => {
+    this.setState({ sent: false, sendEnabled: false })
+  }
+
+  renderOverlay = () => {
+    const { sending, sent } = this.state
+    if (sending) {
+      return (
+        <>
+          <Loading />
+          <br />
+          <p>Sending message</p>
+          <p>
+            I spent my money on film, so the server's slow. <br />
+            Be patient, it can take several seconds <span role="img" aria-label="smile">😊</span>
+          </p>
+        </>
+      )
+    } else if (sent) {
+      return (
+        <>
+          <p><span role="img" aria-label="smile">👍</span></p>
+          <p>Message sent. Thanks!</p>
+          <Button
+            callback={this.handleSentOk}
+            style={{ marginTop: 20, width: 100 }}
+          >
+            Ok
+          </Button>
+        </>
+      )
+    }
+  }
+
   render() {
-    const { name, email, message, sending } = this.state
+    const { name, email, message, sending, sent, sendEnabled } = this.state
 
     return (
-      <FormWrapper sending={sending}>
+      <FormWrapper sending={sending} sent={sent}>
         <p style={{ paddingTop: 10, marginBottom: 20 }}>Send me a message using the form below</p>
         <Input
           id="email"
@@ -77,14 +122,12 @@ class Contact extends Component {
         <Button
           callback={this.handleSend}
           style={{ marginTop: 20, width: 150 }}
+          enabled={sendEnabled}
         >
           SEND
         </Button>
         <div className="overlay">
-          <Loading />
-          <br />
-          <p>Sending message</p>
-          <p>Be patient, server is lazy. It can take several seconds.</p>
+          { this.renderOverlay() }
         </div>
       </FormWrapper>
     )
@@ -97,9 +140,9 @@ const FormWrapper = styled.div`
 
   > .overlay {
     align-items: center;
-    background-color: rgba(255, 255, 255, .6);
+    background-color: rgba(255, 255, 255, .85);
     bottom: 0;
-    display: ${props => props.sending ? 'flex' : 'none'};
+    display: ${props => props.sending || props.sent ? 'flex' : 'none'};
     flex-direction: column;
     justify-content: center;
     left: 0;

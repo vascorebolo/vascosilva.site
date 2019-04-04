@@ -23,6 +23,10 @@ const InputStyled = styled.div`
       color: ${colors.grey.main};
       opacity: .5;
     }
+
+    :focus {
+      outline: 1px solid ${colors.grey.main};
+    }
   }
 
   textarea {
