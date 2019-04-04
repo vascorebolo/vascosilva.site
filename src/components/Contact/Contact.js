@@ -22,10 +22,16 @@ class Contact extends Component {
     this.state = this.initialState
   }
 
+  validateEmail = (email) => {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+    return re.test(email)
+  }
+
   checkEnabledState = () => {
     const { name, email, message } = this.state
 
-    if (name.length > 0 && email.length > 0 && message.length > 0) {
+    if (name.length > 0 && this.validateEmail(email) > 0 && message.length > 0) {
       this.setState({ sendEnabled: true })
     } else {
       this.setState({ sendEnabled: false })
@@ -69,6 +75,7 @@ class Contact extends Component {
 
   renderOverlay = () => {
     const { sending, sent } = this.state
+
     if (sending) {
       return (
         <>
@@ -140,7 +147,7 @@ const FormWrapper = styled.div`
 
   > .overlay {
     align-items: center;
-    background-color: rgba(255, 255, 255, .85);
+    background-color: rgba(255, 255, 255, .90);
     bottom: 0;
     display: ${props => props.sending || props.sent ? 'flex' : 'none'};
     flex-direction: column;
@@ -149,6 +156,10 @@ const FormWrapper = styled.div`
     position: absolute;
     right: 0;
     top: 0;
+
+    p {
+      text-align: center;
+    }
   }
 `
 

@@ -76,6 +76,7 @@ const Input = ({ id, value, handleChange, textarea }) => {
               type="text"
               value={value}
               onChange={handleChange}
+              onKeyUp={handleChange}
               placeholder={id}
             />
           )
