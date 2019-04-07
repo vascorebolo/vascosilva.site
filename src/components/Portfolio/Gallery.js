@@ -9,7 +9,6 @@ import { animateScroll } from 'react-scroll'
 
 import GalleryPhotoLoading from '../GalleryPhotoLoading'
 import Loading from '../Loading'
-import LoadingSimple from '../Loading/LoadingSimple'
 import Button from 'components/Button'
 
 const GalleryDesktopWrapper = styled.div`
@@ -17,8 +16,9 @@ const GalleryDesktopWrapper = styled.div`
   height: 100%;
   overflow-x: auto;
   overflow-y: hidden;
-  padding-bottom: 20px;
+  padding: 0 0 30px 360px;
   min-width: 150px;
+  z-index: 1;
 
   .error + .error {
     display: none;
@@ -32,12 +32,17 @@ const GalleryDesktopWrapper = styled.div`
     align-self: center;
   }
 
-  img {
+  .img-wrapper {
+    background: white;
     height: 100%;
-    margin-right: 20px;
+    padding-right: 20px;
 
     :last-child {
       margin-right: 0;
+    }
+
+    img {
+      height: 100%;
     }
   }
 `
@@ -73,24 +78,28 @@ class Gallery extends Component {
     document.getElementById('scroll-container').scrollLeft = 0
   }
 
-  renderDesktopGallery(gallery) {
+  renderDesktopGallery(gallery) { // Desktop
     let items = []
 
-    items.push(this.renderGalleryInfo(gallery))
+    // items.push(this.renderGalleryInfo(gallery))
 
     gallery.photos.forEach((photo, index) => {
       items.push(
-        <ImageLoader
-          key={`imageloader-${gallery.title}-${index}`}
-          src={`https://vascosilva.site${photo.path}`}
-          loading={() => <Loading />}
-          image={props => <img
+        <div key={`imageloader-${gallery.title}-${index}`} className="img-wrapper">
+          <ImageLoader
             src={`https://vascosilva.site${photo.path}`}
-            key={`photo-${gallery.title}-${index}`}
-            alt={`${gallery.title}-${index}`}
-          /> }
-          error={() => <div class="error">Error loading images <span role="img" aria-label="warning">⚠️</span></div>}
-        />
+            loading={() => <Loading />}
+            image={props => <img
+              src={`https://vascosilva.site${photo.path}`}
+              key={`photo-${gallery.title}-${index}`}
+              alt={`${gallery.title}-${index}`}
+            /> }
+            error={() => <div class="error">Error loading images <span role="img" aria-label="warning">⚠️</span></div>}
+          />
+          <div style={{ fontSize: '12px' }}>
+            { photo.meta.title }
+          </div>
+        </div>
       )
     })
 
@@ -104,24 +113,28 @@ class Gallery extends Component {
   }
 
 
-  renderGalleryImages = (gallery) => {
+  renderGalleryImages = (gallery) => { // Mobile
     return (
       <div className="gallery">
         { this.renderGalleryInfo(gallery) }
         {
           gallery.photos.map((photo, index) => {
             return (
-              <ImageLoader
-                key={`imageloader-${gallery.title}-${index}`}
-                src={`https://vascosilva.site${photo.path}`}
-                loading={() => <GalleryPhotoLoading />}
-                image={props => <img
+              <div key={`imageloader-${gallery.title}-${index}`}>
+                <ImageLoader
                   src={`https://vascosilva.site${photo.path}`}
-                  key={`photo-${gallery.title}-${index}`}
-                  alt={`${gallery.title}-${index}`}
-                /> }
-                error={() => <div>Error loading images <span role="img" aria-label="warning">⚠️</span></div>}
-              />
+                  loading={() => <GalleryPhotoLoading />}
+                  image={props => <img
+                    src={`https://vascosilva.site${photo.path}`}
+                    key={`photo-${gallery.title}-${index}`}
+                    alt={`${gallery.title}-${index}`}
+                  /> }
+                  error={() => <div>Error loading images <span role="img" aria-label="warning">⚠️</span></div>}
+                />
+                <div style={{ fontSize: '12px' }}>
+                  { photo.meta.title }
+                </div>
+              </div>
             )
           })
         }
@@ -141,7 +154,6 @@ class Gallery extends Component {
       </>
     )
   }
-
 
   handleWheel = (e) => {
     document.getElementById('scroll-container').scrollLeft += e.deltaY
@@ -168,9 +180,12 @@ class Gallery extends Component {
            <Media query="(min-width: 880px)">
             {matches =>
               matches ?
-                <GalleryDesktopWrapper onWheel={this.handleWheel} id="scroll-container">
-                  { this.renderDesktopGallery(gallery) }
-                </GalleryDesktopWrapper>
+                <>
+                  { this.renderGalleryInfo(gallery) }
+                  <GalleryDesktopWrapper onWheel={this.handleWheel} id="scroll-container">
+                    { this.renderDesktopGallery(gallery) }
+                  </GalleryDesktopWrapper>
+                </>
               : (
                 this.renderMobileGallery(gallery)
               )

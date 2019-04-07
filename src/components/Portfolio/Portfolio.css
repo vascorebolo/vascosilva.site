@@ -15,6 +15,11 @@
 
 .gallery-container {
   height: 95%;
+  position: relative;
+}
+
+.gallery-container .scroll-container {
+  padding-left: 360px;
 }
 
 .gallery img:last-child {
@@ -23,11 +28,14 @@
 
 .gallery-info {
   display: inline-block;
+  left: 0;
   min-width: 300px;
   padding: 10px 40px 10px 0;
+  position: absolute;
   vertical-align: top;
-  width: 300px;
   white-space: normal;
+  width: 300px;
+  z-index: -1;
 }
 
 .gallery-buttons {
@@ -56,17 +64,6 @@
   color: #fff;
 }
 
-.scroll-horizontal > div > img {
-  max-height: calc(100% - 30px);
-  min-height: calc(100% - 30px);
-  margin-right: 10px;
-}
-
-.react-draggable {
-  height: 100%;
-  transform: translate(0px, 0px)!important;
-}
-
 .gallery-button:focus {
   outline: 0;
 }
@@ -87,65 +84,10 @@
 
   .gallery-info {
     width: 100%;
+    position: static;
   }
 
   .gallery-button {
     margin-top: 15px;
   }
-}
-
-.slick-slider,
-.slick-list,
-.slick-track {
-  height: 100%;
-}
-
-.slick-slide div,
-.slick-slide div img {
-  height: 100%;
-  margin: 0 2px;
-}
-
-.slick-slide div .gallery-info {
-  width: 100px !important;
-  height: auto;
-  transform: translateX(-70%);
-}
-
-.slick-arrow {
-  width: 50px;
-  height: 50px;
-  background: #fff;
-  border: 1px solid #444;
-}
-
-.slick-arrow.slick-disabled {
-  opacity: 0.25;
-}
-
-.slick-arrow.slick-disabled::before {
-  opacity: 1;
-}
-
-.slick-arrow:hover,
-.slick-arrow:focus {
-  background: #fff;
-}
-
-.slick-next {
-  right: -60px;
-}
-
-.slick-prev {
-  left: -60px;
-}
-
-.slick-next:before, .slick-prev:before {
-  color: #444;
-  font-family: inherit;
-}
-
-.slick-track div div:first-child {
-  display: flex;
-  align-items: center;
 }

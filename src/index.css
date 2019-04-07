@@ -5,6 +5,19 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  overflow: hidden;
+
+}
+
+@media (max-width: 880px) {
+  html,
+  body {
+    overflow: auto;
+  }
+}
+
 body {
   margin: 0;
   padding: 0;
