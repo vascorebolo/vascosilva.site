@@ -45,6 +45,10 @@ class Contact extends Component {
     this.checkEnabledState()
   }
 
+  handleKeyUp = (ev) => {
+    this.handleChange(ev)
+  }
+
   handleSend = () => {
     const { name, email, message } = this.state
 
@@ -114,16 +118,19 @@ class Contact extends Component {
           id="email"
           value={email}
           handleChange={this.handleChange}
+          onKeyUp={this.handleKeyUp}
         />
         <Input
           id="name"
           value={name}
           handleChange={this.handleChange}
+          onKeyUp={this.handleKeyUp}
         />
         <Input
           id="message"
           value={message}
           handleChange={this.handleChange}
+          onKeyUp={this.handleKeyUp}
           textarea
         />
         <Button

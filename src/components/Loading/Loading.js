@@ -17,7 +17,7 @@ const DivLoading = styled.div`
     opacity: 0.5;
   }
 
-  & .line:nth-last-child(1) {
+  & .line:nth-last-child(3) {
     animation: loadingC .8s .1s linear infinite;
   }
 
@@ -25,7 +25,7 @@ const DivLoading = styled.div`
     animation: loadingC .8s .18s linear infinite;
   }
 
-  & .line:nth-last-child(3) {
+  & .line:nth-last-child(1) {
     animation: loadingC .8s .26s linear infinite;
   }
 
@@ -41,7 +41,7 @@ const Loading = () => {
     <DivLoading className="loading-div">
       <div className="line"></div>
       <div className="line"></div>
-      <div className="line"></div>
+      {/*<div className="line"></div>*/}
     </DivLoading>
   )
 }

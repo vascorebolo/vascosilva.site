@@ -49,7 +49,7 @@ const InputStyled = styled.div`
   }
 `
 
-const Input = ({ id, value, handleChange, textarea }) => {
+const Input = ({ id, value, handleChange, handleKeyUp, textarea }) => {
   const renderLabel = () => {
     return value !== ''
       ? <label htmlFor={id}>{ id }</label>
@@ -68,6 +68,7 @@ const Input = ({ id, value, handleChange, textarea }) => {
               value={value}
               onChange={handleChange}
               placeholder={id}
+              onKeyUp={handleKeyUp && handleKeyUp()}
             />
           )
           : (
@@ -78,12 +79,17 @@ const Input = ({ id, value, handleChange, textarea }) => {
               onChange={handleChange}
               onKeyUp={handleChange}
               placeholder={id}
+              onKeyUp={handleKeyUp && handleKeyUp()}
             />
           )
       }
 
     </InputStyled>
   )
+}
+
+Input.defaultProps = {
+  handleKeyUp: null,
 }
 
 Input.displayName = 'Input'
