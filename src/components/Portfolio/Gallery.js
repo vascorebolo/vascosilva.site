@@ -4,7 +4,8 @@ import { array, any } from 'prop-types'
 import styled from 'styled-components'
 import ImageLoader from 'react-loading-image'
 import Media from 'react-media'
-import MetaTags from 'react-meta-tags'
+// import MetaTags from 'react-meta-tags'
+import Helmet from 'react-helmet'
 import { animateScroll } from 'react-scroll'
 
 import GalleryPhotoLoading from '../GalleryPhotoLoading'
@@ -172,11 +173,13 @@ class Gallery extends Component {
      if (gallery) {
        return (
          <>
-           <MetaTags>
+           {/*<MetaTags>
               <title>Vasco Silva</title>
               <meta name="description" content={gallery.description} />
               <meta property="og:title" content={`series - ${gallery.title}`} />
-            </MetaTags>
+            </MetaTags>*/}
+            <Helmet title={`series - ${gallery.title}`} />
+            <Helmet description={gallery.description} />
            <Media query="(min-width: 880px)">
             {matches =>
               matches ?
